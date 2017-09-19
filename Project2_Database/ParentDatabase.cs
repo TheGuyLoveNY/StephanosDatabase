@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Project2_Database
+{
+    public partial class ParentDatabase : Form
+    {
+        public ParentDatabase()
+        {
+            InitializeComponent();
+        }
+
+        private void parentBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.parentBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.project2DataSet);
+
+        }
+
+        private void ParentDatabase_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'project2DataSet.Parent' table. You can move, or remove it, as needed.
+            this.parentTableAdapter.Fill(this.project2DataSet.Parent);
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form rankingDatabase = new RankingDatabase();
+            rankingDatabase.Show();
+        }
+    }
+}
